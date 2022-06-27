@@ -1,5 +1,8 @@
 package com.marioacosta.api.accenture.album.services;
 
-public class PlaceHolderService {
+import com.marioacosta.api.accenture.album.model.exceptions.AlbumIntegratedExceptions;
+
+public interface PlaceHolderService {
+	void readPlaceHolder() throws AlbumIntegratedExceptions;
 
 }

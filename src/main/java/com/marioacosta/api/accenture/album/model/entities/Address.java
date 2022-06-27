@@ -1,10 +1,10 @@
 package com.marioacosta.api.accenture.album.model.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
@@ -15,14 +15,18 @@ import lombok.Setter;
 @Entity
 public class Address {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String street;
 	private String suite;
 	private String city;
 	private String zipcode;
-
-	@OneToOne
-	@JoinColumn(name = "geo_id")
+	
+	@OneToOne(fetch= FetchType.LAZY)
+	@JoinColumns(value = {
+			@JoinColumn(name = "lat" , referencedColumnName = "lat"),
+			@JoinColumn(name = "lng" , referencedColumnName = "lng")
+	})
 	private Geo geo;
+	
+	
+	
 }
