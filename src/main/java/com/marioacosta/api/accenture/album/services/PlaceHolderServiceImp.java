@@ -1,16 +1,19 @@
 package com.marioacosta.api.accenture.album.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClientException;
 
 import com.marioacosta.api.accenture.album.integrations.PlaceHolder;
-import com.marioacosta.api.accenture.album.model.dtos.GeoDto;
+import com.marioacosta.api.accenture.album.model.dtos.AlbumDto;
+import com.marioacosta.api.accenture.album.model.dtos.CommentDto;
+import com.marioacosta.api.accenture.album.model.dtos.PhotoDto;
+import com.marioacosta.api.accenture.album.model.dtos.PostDto;
 import com.marioacosta.api.accenture.album.model.dtos.UserDto;
-import com.marioacosta.api.accenture.album.model.exceptions.AlbumIntegratedExceptions;
-import com.marioacosta.api.accenture.album.repositories.GeoRepository;
-import com.marioacosta.api.accenture.album.repositories.UserRepository;
+import com.marioacosta.api.accenture.album.model.exceptions.AlbumServiceExceptions;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,38 +22,68 @@ import lombok.extern.slf4j.Slf4j;
 public class PlaceHolderServiceImp implements PlaceHolderService {
 
 	@Autowired
-	PlaceHolder placeHolder;
+	private PlaceHolder placeHolder;
 
 	@Autowired
-	UserRepository userRepository;
-
+	private UserService userService;
+	
 	@Autowired
-	GeoRepository geoRepository;
+	private AlbumService albumService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@Autowired
+	private PhotoService photoService;
+	
+	@Autowired
+	private PostService postService;
+	
 
 	@Override
 	@Transactional
-	public void readPlaceHolder() throws AlbumIntegratedExceptions {
-
-		// borrar lo que existe
-		// userRepository.deleteAll();
-
-		// recuperar user
-		UserDto user1 = placeHolder.listUsers().get(0);
-		
-		GeoDto geo1 = user1.getAddress().getGeo();
+	public void readPlaceHolder() throws AlbumServiceExceptions {
 
 		try {
-			// guardar geo
-			//geoRepository.save(geo1);
-
-			// guardar company
-			// guardar address
-			// guardar user
-
-			//userRepository.save(user1);
-		} catch (DataAccessException e) {
-			log.error(e.getMessage());
-			e.printStackTrace();
+			
+			// update users
+			List<UserDto> listUserDto = placeHolder.listUsers();
+			log.info(String.format("get place holder users ok. size : %d", listUserDto.size()));
+			userService.saveListUserDto(listUserDto);
+			log.info("userService.saveListUserDto ok" );
+			
+			
+			//update albums
+			List<AlbumDto> listAlbumDto = placeHolder.listAlbums();
+			log.info(String.format("get place holder album ok. size : %d", listAlbumDto.size()));
+			albumService.saveListAlbumDto(listAlbumDto);
+			log.info("albumService.saveListAlbumDto ok" );
+			
+			
+			//update post
+			List<PostDto> listPostDto = placeHolder.listPosts();
+			log.info(String.format("get place holder post ok. size : %d", listPostDto.size()));
+			postService.saveListPostDto(listPostDto);
+			log.info("postService.saveListPostDto ok" );
+			
+			//update comments
+			List<CommentDto> listCommentDto = placeHolder.listComments();
+			log.info(String.format("get place holder comment ok. size : %d", listCommentDto.size()));
+			commentService.saveListCommentDto(listCommentDto);
+			log.info("commentService.saveListCommentDto ok" );
+			
+			//update photos
+			List<PhotoDto> listPhotoDto = placeHolder.listPhotos();
+			log.info(String.format("get place holder photo ok. size : %d", listPhotoDto.size()));
+			photoService.saveListPhotoDto(listPhotoDto);
+			log.info("photoService.saveListPhotoDto ok" );
+			
+			log.info("readPlaceHolder ok" );
+			
+			
+		} catch (WebClientException e) {
+			log.error(e.getMessage(),e);
+			throw new AlbumServiceExceptions(e.getMessage(),e);
 		}
 
 	}

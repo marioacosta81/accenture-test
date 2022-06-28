@@ -1,8 +1,7 @@
 package com.marioacosta.api.accenture.album.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -16,7 +15,6 @@ import lombok.Setter;
 public class Comment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToOne
@@ -25,6 +23,8 @@ public class Comment {
 
 	private String name;
 	private String email;
+	
+	@Column(length = 500)
 	private String body;
 
 }

@@ -18,6 +18,8 @@ public class GeoId implements Serializable{
 	private String lat;
 	private String lng;
 	
+	public GeoId() {}
+	
 	public GeoId(String lat,String lng) {
 		this.lat = lat;
 		this.lng = lng;
