@@ -10,5 +10,9 @@ public interface CommentService {
 	Comment saveCommentDto(CommentDto commentDto) throws AlbumServiceExceptions;
 	
 	List<Comment> saveListCommentDto(List<CommentDto> listCommentDto) throws AlbumServiceExceptions;
+	
+	List<CommentDto> getCommentsByUser(Long iduser) throws AlbumServiceExceptions;
+	
+	List<CommentDto> getCommentsByName(String name) throws AlbumServiceExceptions;
 
 }

@@ -1,7 +1,6 @@
 package com.marioacosta.api.accenture.album.model.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -20,7 +19,7 @@ public class Address {
 	private String city;
 	private String zipcode;
 	
-	@OneToOne(fetch= FetchType.LAZY)
+	@OneToOne
 	@JoinColumns(value = {
 			@JoinColumn(name = "lat" , referencedColumnName = "lat"),
 			@JoinColumn(name = "lng" , referencedColumnName = "lng")

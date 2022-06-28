@@ -54,6 +54,39 @@ public class AlbumServiceImp implements AlbumService {
 	}
 	
 	
+	public List<AlbumDto> getAlbumsAll() throws AlbumServiceExceptions{
+		try {
+			
+			log.info("service get users all");
+			List<Album> result = new ArrayList<>();
+			albumRepository.findAll().forEach(result::add);
+			return mapper.mapperListAlbumToListAlbumDto(result);
+			
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(),e);
+			throw new AlbumServiceExceptions(e.getMessage(),e);
+		}
+	}
+	
+	
+	public List<AlbumDto> getAlbumsByUser(Long iduser) throws AlbumServiceExceptions{
+		try {
+			
+			log.info("service get users by user");
+			List<Album> result = new ArrayList<>();
+			albumRepository.albumsByUser(iduser).forEach(result::add);
+			return mapper.mapperListAlbumToListAlbumDto(result);
+			
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(),e);
+			throw new AlbumServiceExceptions(e.getMessage(),e);
+		}
+	}
+	
+	
+	
+	
+	
 	
 	
 

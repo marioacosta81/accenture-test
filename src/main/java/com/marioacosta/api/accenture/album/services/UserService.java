@@ -11,5 +11,7 @@ public interface UserService {
 	User saveUserDto(UserDto userDto) throws AlbumServiceExceptions;
 	
 	List<User> saveListUserDto(List<UserDto> listUserDto) throws AlbumServiceExceptions;
+	
+	List<UserDto> getUsersAll() throws AlbumServiceExceptions;
 
 }

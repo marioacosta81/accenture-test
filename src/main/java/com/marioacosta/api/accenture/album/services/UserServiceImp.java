@@ -71,6 +71,22 @@ public class UserServiceImp implements UserService{
 	
 	
 	
+	public List<UserDto> getUsersAll() throws AlbumServiceExceptions{
+		try {
+			
+			log.info("service get users all");
+			List<User> result = new ArrayList<User>();
+			userRepository.findAll().forEach(result::add);
+			return mapper.mapperListUserToListUserDto(result);
+			
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(),e);
+			throw new AlbumServiceExceptions(e.getMessage(),e);
+		}
+	}
+	
+	
+	
 	
 
 }

@@ -12,24 +12,45 @@ import com.marioacosta.api.accenture.album.services.PlaceHolderService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("album")
+@RequestMapping("read")
 @Slf4j
-public class AlbumController {
+public class ReadController {
 
 	@Autowired
 	private PlaceHolderService placeHolderService;
 
-	@GetMapping("/find-all")
-	public ResponseEntity<?> listAlbum() {
+	@GetMapping("/readPlaceHolder")
+	public ResponseEntity<?> readPlaceHolder() {
 		try {
 			placeHolderService.readPlaceHolder();
 			log.info("OK");
-			return ResponseEntity.ok("creado");
+			return ResponseEntity.ok().body("the reading was done correctly");
 		} catch (AlbumIntegratedExceptions e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
 		}
 
 	}
+	
+	
+	
+	
+	//insertAlbumForUserAndPermissions
+	//updatePermissionsUserAlbum
+	//getUsersAlbumByPermissions
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

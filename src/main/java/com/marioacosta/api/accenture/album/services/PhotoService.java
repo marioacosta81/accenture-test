@@ -11,5 +11,9 @@ public interface PhotoService {
 	Photo savePhotoDto(PhotoDto photoDto) throws AlbumServiceExceptions;
 	
 	List<Photo> saveListPhotoDto(List<PhotoDto> listPhotoDto) throws AlbumServiceExceptions;
+	
+	List<PhotoDto> getPhotosAll() throws AlbumServiceExceptions;
+	
+	List<PhotoDto> getPhotosByUser(Long iduser)throws AlbumServiceExceptions;
 
 }

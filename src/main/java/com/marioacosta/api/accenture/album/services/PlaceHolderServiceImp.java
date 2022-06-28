@@ -3,6 +3,7 @@ package com.marioacosta.api.accenture.album.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClientException;
@@ -81,7 +82,7 @@ public class PlaceHolderServiceImp implements PlaceHolderService {
 			log.info("readPlaceHolder ok" );
 			
 			
-		} catch (WebClientException e) {
+		} catch (WebClientException | DataAccessException e) {
 			log.error(e.getMessage(),e);
 			throw new AlbumServiceExceptions(e.getMessage(),e);
 		}

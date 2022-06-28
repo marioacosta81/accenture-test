@@ -54,6 +54,35 @@ public class PhotoServiceImp implements PhotoService {
 	}
 	
 	
+	public List<PhotoDto> getPhotosAll() {
+		try {
+
+			log.info("service get photos all");
+			List<Photo> result = new ArrayList();
+			photoRepository.findAll().forEach(result::add);
+			return mapper.mapperListPhotoToListPhotoDto(result);
+
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(), e);
+			throw new AlbumServiceExceptions(e.getMessage(), e);
+		}
+	}
+	
+	
+	public List<PhotoDto> getPhotosByUser(Long iduser) throws AlbumServiceExceptions {
+		try {
+
+			log.info("service get photos all");
+			List<Photo> result = new ArrayList();
+			photoRepository.photosByUser(iduser).forEach(result::add);
+			return mapper.mapperListPhotoToListPhotoDto(result);
+
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(), e);
+			throw new AlbumServiceExceptions(e.getMessage(), e);
+		}
+	}
+	
 	
 	
 

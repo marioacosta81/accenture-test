@@ -54,6 +54,38 @@ public class CommentServiceImp implements CommentService {
 	}
 	
 	
+	public List<CommentDto> getCommentsByUser(Long iduser) throws AlbumServiceExceptions {
+		try {
+
+			log.info("service get comments by user");
+			List<Comment> result = new ArrayList();
+			commentRepository.commentsByUser(iduser).forEach(result::add);
+			return mapper.mapperListCommentToListCommentDto(result);
+
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(), e);
+			throw new AlbumServiceExceptions(e.getMessage(), e);
+		}
+	}
+	
+	
+	
+	public List<CommentDto> getCommentsByName(String name) throws AlbumServiceExceptions {
+		try {
+
+			log.info("service get comments by name");
+			List<Comment> result = new ArrayList();
+			commentRepository.commentsByName(name).forEach(result::add);
+			return mapper.mapperListCommentToListCommentDto(result);
+
+		} catch (DataAccessException e) {
+			log.error(e.getMessage(), e);
+			throw new AlbumServiceExceptions(e.getMessage(), e);
+		}
+	}
+	
+	
+	
 	
 	
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientException;
 
 import com.marioacosta.api.accenture.album.model.dtos.AlbumDto;
 import com.marioacosta.api.accenture.album.model.dtos.CommentDto;
@@ -33,7 +34,7 @@ public class PlaceHolderImp implements PlaceHolder {
 					});
 			log.info(String.format("ok  %s %d", "listUsers", response.block().size()));
 			return response.block();
-		} catch (Exception e) {
+		} catch (WebClientException e) {
 			log.error(e.getMessage());
 			throw new AlbumIntegratedExceptions(HttpStatus.FORBIDDEN, null);
 		}
@@ -47,7 +48,7 @@ public class PlaceHolderImp implements PlaceHolder {
 					});
 			log.info(String.format("ok  %s %d", "listAlbums", response.block().size()));
 			return response.block();
-		} catch (Exception e) {
+		} catch (WebClientException e) {
 			log.error(e.getMessage());
 			throw new AlbumIntegratedExceptions(HttpStatus.FORBIDDEN, null);
 		}
@@ -70,7 +71,7 @@ public class PlaceHolderImp implements PlaceHolder {
 					});
 			log.info(String.format("ok  %s %d", "listPhotos", response.block().size()));
 			return response.block();
-		} catch (Exception e) {
+		} catch (WebClientException e) {
 			log.error(e.getMessage());
 			throw new AlbumIntegratedExceptions(HttpStatus.FORBIDDEN, null);
 		}
@@ -83,7 +84,7 @@ public class PlaceHolderImp implements PlaceHolder {
 					});
 			log.info(String.format("ok  %s %d", "listComments", response.block().size()));
 			return response.block();
-		} catch (Exception e) {
+		} catch (WebClientException e) {
 			log.error(e.getMessage());
 			throw new AlbumIntegratedExceptions(HttpStatus.FORBIDDEN, null);
 		}
@@ -96,7 +97,7 @@ public class PlaceHolderImp implements PlaceHolder {
 					});
 			log.info(String.format("ok  %s %d", "listPosts", response.block().size()));
 			return response.block();
-		} catch (Exception e) {
+		} catch (WebClientException e) {
 			log.error(e.getMessage());
 			throw new AlbumIntegratedExceptions(HttpStatus.FORBIDDEN, null);
 		}

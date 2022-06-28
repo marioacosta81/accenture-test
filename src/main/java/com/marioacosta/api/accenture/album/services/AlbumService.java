@@ -11,5 +11,9 @@ public interface AlbumService {
 	Album saveAlbumDto(AlbumDto albumDto) throws AlbumServiceExceptions;
 	
 	List<Album> saveListAlbumDto(List<AlbumDto> listAlbumDto) throws AlbumServiceExceptions;
+	
+	List<AlbumDto> getAlbumsAll() throws AlbumServiceExceptions;
+	
+	List<AlbumDto> getAlbumsByUser(Long iduser) throws AlbumServiceExceptions;
 
 }
