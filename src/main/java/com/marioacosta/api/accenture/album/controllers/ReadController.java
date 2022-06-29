@@ -23,34 +23,11 @@ public class ReadController {
 	public ResponseEntity<?> readPlaceHolder() {
 		try {
 			placeHolderService.readPlaceHolder();
-			log.info("OK");
+			log.info("readPlaceHolder OK. The reading was done correctly");
 			return ResponseEntity.ok().body("the reading was done correctly");
 		} catch (AlbumIntegratedExceptions e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
 		}
-
 	}
-	
-	
-	
-	
-	//insertAlbumForUserAndPermissions
-	//updatePermissionsUserAlbum
-	//getUsersAlbumByPermissions
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

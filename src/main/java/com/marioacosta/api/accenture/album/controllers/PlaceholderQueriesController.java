@@ -103,6 +103,8 @@ public class PlaceholderQueriesController {
 	}
 	
 	
+	
+	
 	//getCommentsByName
 	@GetMapping("/get-comments-by-name")
 	public ResponseEntity<?> getCommentsByName(@RequestParam String name ) {
@@ -115,9 +117,6 @@ public class PlaceholderQueriesController {
 		}
 
 	}
-	
-	
-	
 	
 	//getCommentsByUser 
 	@GetMapping("/get-comments-by-user/{iduser}")

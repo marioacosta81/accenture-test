@@ -1,5 +1,7 @@
 package com.marioacosta.api.accenture.album.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ public class AlbumsUsersController {
 	
 	//insertAlbumForUserAndPermissions
 	@PostMapping("/create")
-	public ResponseEntity<?> createAlbumsUsers( @RequestBody AlbumsUsersDto albumsUsersDto) {
+	public ResponseEntity<?> createAlbumsUsers(@Valid @RequestBody AlbumsUsersDto albumsUsersDto) {
 		try {
 			log.info( "get all users");
 			return ResponseEntity.ok().body( albumsUsersService.saveAlbumsUsersDto(albumsUsersDto));
@@ -39,7 +41,7 @@ public class AlbumsUsersController {
 	
 	//updatePermissionsUserAlbum
 	@PutMapping("/set-permissions")
-	public ResponseEntity<?> updateAlbumsUsers( @RequestBody AlbumsUsersDto albumsUsersDto) {
+	public ResponseEntity<?> updateAlbumsUsers(@Valid @RequestBody AlbumsUsersDto albumsUsersDto) {
 		try {
 			log.info( "get all users");
 			return ResponseEntity.ok().body( albumsUsersService.saveAlbumsUsersDto(albumsUsersDto));
