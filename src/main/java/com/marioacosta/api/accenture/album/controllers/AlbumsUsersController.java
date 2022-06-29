@@ -2,6 +2,8 @@ package com.marioacosta.api.accenture.album.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,8 +25,6 @@ public class AlbumsUsersController {
 	private AlbumsUsersService albumsUsersService;
 	
 	
-	
-	
 	//insertAlbumForUserAndPermissions
 	@PostMapping("/create")
 	public ResponseEntity<?> createAlbumsUsers( @RequestBody AlbumsUsersDto albumsUsersDto) {
@@ -35,9 +35,6 @@ public class AlbumsUsersController {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
 		}
-		
-		
-		
 	}
 	
 	//updatePermissionsUserAlbum
@@ -50,22 +47,31 @@ public class AlbumsUsersController {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
 		}
-		
-		
-		
 	}
-	/*
+	
+	
 	//getUsersAlbumByPermissions
 	@GetMapping("/get-users-by-album-read-permission/{idAlbum}")
-	public ResponseEntity<?> getUsersByPermissionsAlbum(  @PathVariable Long idAlbum   ){
+	public ResponseEntity<?> getUsersByPermissionsReadAlbum(  @PathVariable Long idAlbum   ){
 		try {
-			log.info( "get all users");
-			return ResponseEntity.ok().body( albumsUsersService.saveAlbumsUsersDto(albumsUsersDto));
+			log.info( "getUsersByPermissionsReadAlbum");
+			return ResponseEntity.ok().body( albumsUsersService.findUserAlbumsRead(idAlbum));
 		} catch (AlbumIntegratedExceptions e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
 		}
-	}*/
+	}
+	
+	@GetMapping("/get-users-by-album-write-permission/{idAlbum}")
+	public ResponseEntity<?> getUsersByPermissionsWriteAlbum(  @PathVariable Long idAlbum   ){
+		try {
+			log.info( "getUsersByPermissionsWriteAlbum");
+			return ResponseEntity.ok().body( albumsUsersService.findUserAlbumsWrite(idAlbum));
+		} catch (AlbumIntegratedExceptions e) {
+			log.error(e.getMessage());
+			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+		}
+	}
 	
 	
 	
