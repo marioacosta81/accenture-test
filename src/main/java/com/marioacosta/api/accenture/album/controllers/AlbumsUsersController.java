@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.marioacosta.api.accenture.album.model.dtos.AlbumsUsersDto;
 import com.marioacosta.api.accenture.album.model.exceptions.AlbumIntegratedExceptions;
+import com.marioacosta.api.accenture.album.model.exceptions.AlbumServiceExceptions;
 import com.marioacosta.api.accenture.album.services.AlbumsUsersService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,9 @@ public class AlbumsUsersController {
 		try {
 			log.info( "get all users");
 			return ResponseEntity.ok().body( albumsUsersService.saveAlbumsUsersDto(albumsUsersDto));
+		} catch (AlbumServiceExceptions e) {
+			log.error(e.getMessage());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		} catch (AlbumIntegratedExceptions e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
@@ -45,6 +49,9 @@ public class AlbumsUsersController {
 		try {
 			log.info( "get all users");
 			return ResponseEntity.ok().body( albumsUsersService.saveAlbumsUsersDto(albumsUsersDto));
+		} catch (AlbumServiceExceptions e) {
+			log.error(e.getMessage());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		} catch (AlbumIntegratedExceptions e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
@@ -58,9 +65,9 @@ public class AlbumsUsersController {
 		try {
 			log.info( "getUsersByPermissionsReadAlbum");
 			return ResponseEntity.ok().body( albumsUsersService.findUserAlbumsRead(idAlbum));
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 	}
 	
@@ -69,9 +76,9 @@ public class AlbumsUsersController {
 		try {
 			log.info( "getUsersByPermissionsWriteAlbum");
 			return ResponseEntity.ok().body( albumsUsersService.findUserAlbumsWrite(idAlbum));
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 	}
 	

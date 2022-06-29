@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.marioacosta.api.accenture.album.model.dtos.AlbumsUsersDto;
 import com.marioacosta.api.accenture.album.model.dtos.UserDto;
+import com.marioacosta.api.accenture.album.model.exceptions.AlbumIntegratedExceptions;
 import com.marioacosta.api.accenture.album.model.exceptions.AlbumServiceExceptions;
 
 public interface AlbumsUsersService {
 	
-	AlbumsUsersDto saveAlbumsUsersDto(AlbumsUsersDto albumDto) throws AlbumServiceExceptions;
+	AlbumsUsersDto saveAlbumsUsersDto(AlbumsUsersDto albumDto) throws AlbumServiceExceptions,AlbumIntegratedExceptions;
 	
 	List<UserDto> findUserAlbumsRead(Long albumId) throws AlbumServiceExceptions;
 	

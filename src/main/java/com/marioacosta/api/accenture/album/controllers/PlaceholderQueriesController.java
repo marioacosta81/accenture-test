@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.marioacosta.api.accenture.album.model.exceptions.AlbumIntegratedExceptions;
+import com.marioacosta.api.accenture.album.model.exceptions.AlbumServiceExceptions;
 import com.marioacosta.api.accenture.album.services.AlbumService;
 import com.marioacosta.api.accenture.album.services.CommentService;
 import com.marioacosta.api.accenture.album.services.PhotoService;
@@ -40,9 +40,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get all users");
 			return ResponseEntity.ok().body(userService.getUsersAll());
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -54,9 +54,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get all photos");
 			return ResponseEntity.ok().body(photoService.getPhotosAll());
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -67,9 +67,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get photos by user");
 			return ResponseEntity.ok().body(photoService.getPhotosByUser(iduser));
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -81,9 +81,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get all albums");
 			return ResponseEntity.ok().body(albumService.getAlbumsAll()   );
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -95,9 +95,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get album by user");
 			return ResponseEntity.ok().body(albumService.getAlbumsByUser(iduser)   );
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -111,9 +111,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get comments by name");
 			return ResponseEntity.ok().body(  commentService.getCommentsByName(name)  );
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
@@ -124,9 +124,9 @@ public class PlaceholderQueriesController {
 		try {
 			log.info( "get comments by user");
 			return ResponseEntity.ok().body(     commentService.getCommentsByUser(iduser)   );
-		} catch (AlbumIntegratedExceptions e) {
+		} catch (AlbumServiceExceptions e) {
 			log.error(e.getMessage());
-			return ResponseEntity.status(e.getStatusCode()).body(e.getStatusText());
+			return ResponseEntity.internalServerError().body(e.getMessage());
 		}
 
 	}
