@@ -6,7 +6,7 @@ Me complace especialmente presentar la prueba de ingreso a la Compañia Accentur
 Este documento es una guia informal de entendimiento de la API Rest que se desarrollo para la prueba. 
 
 
-Para el desarrollo de la API se utilizo GIT y se hizó push a un repositorio remoto en Git Hub desde donde se pueden observar el código fuente dela API.
+Para el desarrollo de la API se utilizo GIT y se hizó push a un repositorio remoto en Git Hub, en la rama 'master', desde donde se puede observar el código fuente dela API.
 la url del repositori en Git Hub es:
 https://github.com/marioacosta81/accenture-test.git
 
